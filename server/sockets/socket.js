@@ -1,33 +1,30 @@
 const { io } = require('../server');
 
-
 io.on('connection', (client) => {
 
-    console.log('Usuario Conectado');
+    console.log('Usuario conectado');
 
-    client.emit('EnviarMensaje', {
+    client.emit('enviarMensaje', {
         usuario: 'Administrador',
-        mensaje: 'Bienvenido a esta aplicacion'
+        mensaje: 'Bienvenido a la Aplicacion'
     });
-
 
     client.on('disconnect', () => {
+
         console.log('Usuario Desconectado');
+
     });
 
-    client.on('EnviarMensaje', (data, callback) => {
+    client.on('enviarMensaje', (mensaje, callback) => {
 
-        console.log(data);
-        client.broadcast.emit('EnviarMensaje', data);
+        console.log(mensaje);
+
+        client.broadcast.emit('enviarMensaje', mensaje);
 
         // if (mensaje.usuario) {
-        //     callback({
-        //         resp: 'TODO SALIO BIEN'
-        //     });
+        //     callback('TODO SALIO BIEN');
         // } else {
-        //     callback({
-        //         resp: 'TODO SALIO MAL!!!!!'
-        //     });
+        //     callback('TODO SALIO MAL!!!!!');
         // }
 
     });

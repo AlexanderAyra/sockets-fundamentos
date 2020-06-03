@@ -1,20 +1,22 @@
 let socket = io();
 
 socket.on('connect', () => {
-    console.log('Conectado al Servidor');
+    console.log('Servidor Conectado');
 });
 
 socket.on('disconnect', () => {
+
     console.log('Perdimos conexion con el servidor');
+
 });
 
-socket.emit('EnviarMensaje', {
+socket.emit('enviarMensaje', {
     usuario: 'Alexander',
-    mensaje: 'Hola a Todos'
+    mensaje: 'Hola a todos'
 }, (resp) => {
-    console.log('Servidor: ', resp);
+    console.log(resp);
 });
 
-socket.on('EnviarMensaje', (mensaje) => {
-    console.log('Servidor: ', mensaje);
-})
+socket.on('enviarMensaje', (mensaje) => {
+    console.log(mensaje);
+});
